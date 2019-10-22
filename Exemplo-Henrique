@@ -1,0 +1,73 @@
+package exemplo;
+
+import static org.junit.Assert.*;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import pages.CadastroPages;
+
+public class AbrirNavegador {
+	static WebDriver driver;
+	static CadastroPages click;
+	
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		System.setProperty("webdriver.chrome.drive", "C:/chromedriver.exe");
+		driver = new ChromeDriver();
+		
+		driver.get("http://lesse.com.br/tools/thoth-rp/");
+		click = new CadastroPages(driver);
+	}
+
+	@Test
+	public void test() {
+		click.Clicar();
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	
+	}
+
+}
+
+package pages;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class CadastroPages {
+	static WebDriver driver;
+
+	public CadastroPages(WebDriver driver) {
+	this.driver= driver;
+	}
+	public void Clicar() {
+		
+		WebElement pesquisa =  driver.findElement(By.name("search"));
+		pesquisa.sendKeys("teste");
+		pesquisa.sendKeys(Keys.ENTER);
+		
+		WebElement criar = driver.findElement(By.linkText("Sign up"));
+		criar.click();
+		
+	
+		
+		WebElement nome =  driver.findElement(By.name("name"));
+		nome.sendKeys("Teste do Selenium");
+		
+		WebElement senha = driver.findElement(By.name("password"));
+		senha.sendKeys("teste");
+		
+		driver.findElement(By.className("form-signup")).findElement(By.tagName("BUTTON")).click();
+	}
+}
