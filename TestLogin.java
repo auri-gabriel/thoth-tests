@@ -1,5 +1,3 @@
-package test;
-
 import java.util.concurrent.TimeUnit;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -28,24 +26,15 @@ public class OpenNavigator {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		//Fecha apenas a aba que ele usou
-	}
-	
-	@Test
-	public void testSignUp() {
-		webDriver.findElement(By.linkText("Sign up")).click();
-		webDriver.findElement(By.name("email")).sendKeys("jason@gmail.com");
-		webDriver.findElement(By.name("name")).sendKeys("Jason");
-		webDriver.findElement(By.name("password")).sendKeys("12345678");
-		webDriver.findElement(By.className("form-signup")).findElement(By.tagName("BUTTON")).click();
+		webDriver.close();
 	}
 	
 	@Test
 	public void testSignIn() {
 		webDriver.findElement(By.linkText("Sign in")).click();
-		webDriver.findElement(By.name("email")).sendKeys("guilhermesamuel79@gmail.com");
-		webDriver.findElement(By.name("password")).sendKeys("12345678");
+		webDriver.findElement(By.name("email")).sendKeys("ketrin_vargas@outlook.com");
+		webDriver.findElement(By.name("password")).sendKeys("123456");
 		webDriver.findElement(By.className("form-signin")).findElement(By.tagName("BUTTON")).click();
-		
 	}
 
 	@Test
