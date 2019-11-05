@@ -1,0 +1,52 @@
+package UC_05;
+
+import static org.junit.Assert.*;
+
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import Complement.*;;
+
+public class test_UC05 {
+	static WebDriver driver;
+	static Login login;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		System.setProperty("webdriver.chrome.drive", "C:/chromedriver.exe");
+		driver = new ChromeDriver();
+
+		driver.get("http://lesse.com.br/tools/thoth-rp/");
+		login = new Login(driver);
+	}
+	
+	
+	
+	@Test
+	public void testDelete() throws InterruptedException {
+		login.login();
+		
+		driver.findElement(By.xpath("//*[@id=\"table_my_projects\"]/tbody/tr[1]/td[3]/button")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("/html/body/div[2]/div/div[3]/button[1]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("/html/body/div[2]/div/div[3]/button[1]")).click();
+		Thread.sleep(2000);
+		
+		
+	}
+	
+	
+	
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+}
