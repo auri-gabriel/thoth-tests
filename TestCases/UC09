@@ -1,0 +1,64 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class UC08 {
+
+	private static WebDriver webDriver;
+
+	@BeforeClass
+	public static void setUp() throws Exception {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\ketrim\\Documents\\Drivers\\chromedriver.exe");
+		webDriver = new ChromeDriver();
+		webDriver.get("http://lesse.com.br/tools/thoth-rp/");
+		assertTrue("Título da página difere do esperado", webDriver.getTitle().contentEquals("Thoth"));
+	}
+
+	@AfterClass
+	public static void tearDown() throws Exception {
+		webDriver.close();
+		
+	} 
+
+	@Test
+	public void test() throws InterruptedException {
+		//login
+		webDriver.findElement(By.linkText("Sign in")).click();
+		webDriver.findElement(By.name("email")).sendKeys("ketrin_vargas@outlook.com");
+		webDriver.findElement(By.name("password")).sendKeys("123456");
+		webDriver.findElement(By.className("form-signin")).findElement(By.tagName("BUTTON")).click();
+		
+		//menu
+		webDriver.get("http://lesse.com.br/tools/thoth-rp/dashboard");
+		webDriver.findElement(By.xpath("//*[@id=\"table_my_projects\"]/tbody/tr[4]/td[3]/a[3]")).click();
+		
+		
+		//editar projeto
+		//webDriver.get("http://lesse.com.br/tools/thoth-rp/add_research/88");
+		webDriver.findElement(By.xpath("//*[@id=\"table_members\"]/tbody/tr[2]/td[4]/button/span")).click();
+		
+		
+		//excluir membro
+
+		webDriver.findElement(By.xpath("//*[@id=\"table_members\"]/tbody/tr[2]/td[4]/button")).click();
+		Thread.sleep(100);
+		webDriver.findElement(By.xpath("/html/body/div[2]/div/div[3]/button[1]")).submit();
+		Thread.sleep(1500);
+		
+		
+		
+		
+}
+
+
+}
