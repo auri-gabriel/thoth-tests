@@ -1,0 +1,121 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class UC09 {
+
+	private static WebDriver webDriver;
+ 
+	@Before
+	public void setUp() throws Exception {
+
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\ketrim\\Documents\\Drivers\\chromedriver.exe");
+		webDriver = new ChromeDriver();
+		webDriver.get("http://lesse.com.br/tools/thoth-rp/");
+		assertTrue("Título da página difere do esperado", webDriver.getTitle().contentEquals("Thoth"));
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		webDriver.close();
+	}
+
+	
+	@Test
+	public void testEditar1() throws InterruptedException {
+
+		// login 
+		webDriver.findElement(By.linkText("Sign in")).click();
+		webDriver.findElement(By.name("email")).sendKeys("ketrin_vargas@outlook.com");
+		webDriver.findElement(By.name("password")).sendKeys("123456");
+		webDriver.findElement(By.className("form-signin")).findElement(By.tagName("BUTTON")).click();
+
+		// menu
+		webDriver.get("http://lesse.com.br/tools/thoth-rp/dashboard");
+		webDriver.findElement(By.xpath("//*[@id=\"table_my_projects\"]/tbody/tr[4]/td[3]/a[3]")).click();
+
+		// editar projeto
+		webDriver.get("http://lesse.com.br/tools/thoth-rp/add_research/89");
+		webDriver.findElement(By.xpath("//*[@id=\"table_my_projects\"]/tbody/tr[5]/td[3]/a[3]")).click();
+		Thread.sleep(15);
+		
+		 
+		//editar nivel de membro
+		
+		webDriver.findElement(By.xpath("//*[@id=\"table_members\"]/tbody/tr[2]/td[3]/select")).click();
+		Thread.sleep(15);
+		
+		//investigador
+		Select select1 = new Select(webDriver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[3]/div[2]/div/table/tbody/tr[2]/td[3]/select")));
+		select1.selectByVisibleText("Researcher");
+		Thread.sleep(15);
+		webDriver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
+	}
+
+	@Test
+	public void testEditar2() throws InterruptedException {
+
+		// login
+		webDriver.findElement(By.linkText("Sign in")).click();
+		webDriver.findElement(By.name("email")).sendKeys("ketrin_vargas@outlook.com");
+		webDriver.findElement(By.name("password")).sendKeys("123456");
+		webDriver.findElement(By.className("form-signin")).findElement(By.tagName("BUTTON")).click();
+
+		// menu
+		webDriver.get("http://lesse.com.br/tools/thoth-rp/dashboard");
+		webDriver.findElement(By.xpath("//*[@id=\"table_my_projects\"]/tbody/tr[4]/td[3]/a[3]")).click();
+
+		// editar projeto
+		webDriver.get("http://lesse.com.br/tools/thoth-rp/add_research/89");
+		webDriver.findElement(By.xpath("//*[@id=\"table_my_projects\"]/tbody/tr[5]/td[3]/a[3]")).click();
+
+		// editar nivel de membro
+		webDriver.get("http://lesse.com.br/tools/thoth-rp/add_research/89");
+		webDriver.findElement(By.xpath("//*[@id=\"table_members\"]/tbody/tr[2]/td[3]/select")).click();
+	
+		//revisor
+		Select select2 = new Select(webDriver.findElement(By.xpath("//*[@id=\"table_members\"]/tbody/tr[2]/td[3]/select")));
+		select2.selectByVisibleText("Reviser");
+		Thread.sleep(1000);
+		webDriver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
+
+	}
+
+	 
+	@Test
+	public void testEditar3() throws InterruptedException {
+
+		// login
+		webDriver.findElement(By.linkText("Sign in")).click();
+		webDriver.findElement(By.name("email")).sendKeys("ketrin_vargas@outlook.com");
+		webDriver.findElement(By.name("password")).sendKeys("123456");
+		webDriver.findElement(By.className("form-signin")).findElement(By.tagName("BUTTON")).click();
+
+		// menu
+		webDriver.get("http://lesse.com.br/tools/thoth-rp/dashboard");
+		webDriver.findElement(By.xpath("//*[@id=\"table_my_projects\"]/tbody/tr[4]/td[3]/a[3]")).click();
+
+		// editar projeto
+		webDriver.get("http://lesse.com.br/tools/thoth-rp/add_research/89");
+		webDriver.findElement(By.xpath("//*[@id=\"table_my_projects\"]/tbody/tr[5]/td[3]/a[3]")).click();
+
+		// editar nivel de membro
+		webDriver.get("http://lesse.com.br/tools/thoth-rp/add_research/89");
+		webDriver.findElement(By.xpath("//*[@id=\"table_members\"]/tbody/tr[2]/td[3]/select")).click();
+	
+		//visualizador
+		Select select2 = new Select(webDriver.findElement(By.xpath("//*[@id=\"table_members\"]/tbody/tr[2]/td[3]/select")));
+		select2.selectByVisibleText("Viewer");
+		Thread.sleep(1000);
+		webDriver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
+
+	}
+}
