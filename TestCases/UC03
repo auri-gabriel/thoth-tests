@@ -1,0 +1,59 @@
+package UC_03;
+
+import static org.junit.Assert.*;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import Complement.Login;
+
+public class test_UC03 {
+	static WebDriver driver;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		System.setProperty("webdriver.chrome.drive", "C:/chromedriver.exe");
+		driver = new ChromeDriver();
+
+		driver.get("http://lesse.com.br/tools/thoth-rp/");
+
+	}
+
+	@Test
+	public void test() throws IOException, InterruptedException {
+
+		BufferedReader reader = new BufferedReader(new FileReader("C:/SIGN_IN.txt"));
+		
+
+		for (int i = 0; i < 6; i++) {
+			String line1 = reader.readLine();
+			String line2 = reader.readLine();
+			WebElement signin = driver.findElement(By.linkText("Sign in"));
+			signin.click();
+			Thread.sleep(1000);
+			WebElement email = driver.findElement(By.id("inputEmail1"));
+			email.sendKeys(line1);
+			Thread.sleep(1000);
+			WebElement password = driver.findElement(By.id("InputPassword"));
+			password.sendKeys(line2);
+			Thread.sleep(1000);
+			password.sendKeys(Keys.ENTER);
+		}
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+}
