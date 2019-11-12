@@ -60,11 +60,17 @@ public class UC12 {
 		driver.get("http://lesse.com.br/tools/thoth-rp/open/177");//abre a pagina do projeto
 		driver.findElement(By.xpath("/html/body/div/div[1]/div[1]/a[3]")).click();//clica no conducting
 		driver.findElement(By.xpath("/html/body/div/div[1]/div[2]/ul/li[2]/a")).click();//clica no review quality
-		driver.findElement(By.xpath("//*[@id=\"table_conf_paper_selection\"]/tbody/tr[1]")).click();//seleciona o conflito
-		driver.findElement(By.id("status_conflict")).click();//clica no status do conflito
-		driver.findElement(By.xpath("//*[@id=\"status_conflict\"]/option[1]")).click();//clica na opcao do status do conflito
-		Thread.sleep(1000);//espera a tela de successo
-		assertEquals("Accepted", driver.findElement(By.id("swal2-title")).getText());//confere se o resultado é o esperado
+		driver.findElement(By.xpath("//*[@id="table_conf_paper_qa"]/tbody/tr")).click();//seleciona o conflito
+		
+		driver.findElement(By.xpath("//*[@id="conf_01"]")).click();//clica no status do conflito
+		driver.findElement(By.xpath("//*[@id="conf_01"]/option[4]")).click();//clica na opcao do status do primeiro conflito
+		Thread.sleep(1000);//espera a primeira tela de successo
+		
+		driver.findElement(By.xpath("//*[@id="conf_02"]")).click();//clica no status do conflito
+		driver.findElement(By.xpath("//*[@id="conf_02"]/option[4]")).click();//clica na opcao do status do primeiro conflito
+		Thread.sleep(1000);//espera a primeira tela de successo
+		
+		assertEquals("Success", driver.findElement(By.id("swal2-title")).getText());//confere se o resultado é o esperado
 		driver.findElement(By.cssSelector(".swal2-confirm")).click(); //fecha o popup de sucesso
 		driver.close();//termina o teste
 	}
