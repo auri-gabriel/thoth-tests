@@ -57,7 +57,7 @@ public class UC11 {
 	@Test
 	public void testSelection() throws Exception {
 		
-		driver.get("http://lesse.com.br/tools/thoth-rp/open/177");	//abre a pagina do projeto
+		driver.get("http://lesse.com.br/tools/thoth-rp/open/84");	//abre a pagina do projeto
 		driver.findElement(By.xpath("/html/body/div/div[1]/div[1]/a[3]")).click();//clica no conducting
 		driver.findElement(By.xpath("/html/body/div/div[1]/div[2]/ul/li[1]/a")).click();//clica no review selection
 		driver.findElement(By.xpath("//*[@id=\"table_conf_paper_selection\"]/tbody/tr[1]")).click();//seleciona o conflito
