@@ -1,2 +1,0 @@
-/html/body/div/div[1]/div[2]/div[4]/table/tbody/tr[1]/td[2]
-/html/body/div/div[1]/div[2]/div[4]/table/tbody/tr[2]/td[2]
