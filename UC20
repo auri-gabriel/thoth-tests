@@ -1,0 +1,56 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class UC20 {
+	
+	static WebDriver webDriver;
+	
+	@Before
+	public void setUp() throws Exception {
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\ketrim\\Documents\\Drivers\\chromedriver.exe");
+		webDriver = new ChromeDriver();
+		webDriver.get("http://lesse.com.br/tools/thoth-rp/");
+		
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void test() throws Exception {
+	   
+		webDriver.findElement(By.linkText("Sign in")).click();
+		webDriver.findElement(By.name("email")).sendKeys("cv035304@gmail.com");
+		webDriver.findElement(By.name("password")).sendKeys("222222");
+		webDriver.findElement(By.className("form-signin")).findElement(By.tagName("BUTTON")).click();
+		Thread.sleep(1000);
+		
+		
+		webDriver.findElement(By.xpath("//*[@id=\"table_my_projects\"]/tbody/tr[5]/td[3]/a")).click();
+		Thread.sleep(1000);
+		webDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/a[5]")).click();
+		Thread.sleep(1000);
+		webDriver.findElement(By.xpath("//*[@id=\"check_import_bib\"]")).click();
+		Thread.sleep(1000);
+		webDriver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/div/a")).click();
+		
+		
+	
+	
+		
+	}
+
+}
